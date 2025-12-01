@@ -9,7 +9,16 @@
     "preview": "vite preview",
     "test.e2e": "cypress run",
     "test.unit": "vitest",
-    "lint": "eslint"
+    "lint": "biome check .",
+    "lint:fix": "biome check --write .",
+    "format": "biome format --write .",
+    "prepare": "husky",
+    "precommit:test": "npx biome check . && npx biome format . && npx commitlint --from HEAD~1 --to HEAD"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,json,css,md}": [
+      "biome check --write"
+    ]
   },
   "dependencies": {
     "@capacitor/android": "7.4.4",
@@ -19,6 +28,7 @@
     "@capacitor/ios": "7.4.4",
     "@capacitor/keyboard": "^7.0.3",
     "@capacitor/status-bar": "^7.0.3",
+    "@commitlint/config-conventional": "^20.0.0",
     "@ionic/react": "^8.5.0",
     "@ionic/react-router": "^8.5.0",
     "@tailwindcss/postcss": "^4.1.17",
@@ -32,6 +42,7 @@
     "react-router-dom": "^5.3.4"
   },
   "devDependencies": {
+    "@biomejs/biome": "2.3.8",
     "@capacitor/cli": "7.4.4",
     "@testing-library/dom": ">=7.21.4",
     "@testing-library/jest-dom": "^5.16.5",
@@ -48,7 +59,9 @@
     "eslint-plugin-react-hooks": "^5.1.0",
     "eslint-plugin-react-refresh": "^0.4.19",
     "globals": "^15.15.0",
+    "husky": "^9.1.7",
     "jsdom": "^22.1.0",
+    "lint-staged": "^16.2.7",
     "postcss": "^8.5.6",
     "tailwindcss": "^4.1.17",
     "terser": "^5.4.0",
