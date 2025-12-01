@@ -3,18 +3,14 @@ import "./Home.css";
 
 const Home: React.FC = () => {
   return (
-    <IonPage>
+    <IonPage className="flex-1">
       <IonHeader>
         <IonToolbar>
           <IonTitle>Blank</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Blank</IonTitle>
-          </IonToolbar>
-        </IonHeader>
+        <IonTitle size="large" className="bg-red-300 text-white">Started App</IonTitle>
       </IonContent>
     </IonPage>
   );
