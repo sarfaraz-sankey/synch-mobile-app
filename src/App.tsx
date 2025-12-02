@@ -1,7 +1,6 @@
-import { Redirect, Route } from "react-router-dom";
-import { IonApp, IonRouterOutlet, setupIonicReact } from "@ionic/react";
+import { IonApp, IonRouterOutlet, IonTabs, setupIonicReact } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
-import Home from "./pages/Home";
+import { Redirect, Route } from "react-router-dom";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -32,20 +31,34 @@ import "@ionic/react/css/palettes/dark.system.css";
 
 /* Theme variables */
 import "./theme/variables.css";
+import BottomTabBar from "./navigations/BottomTabBar";
+import Contact from "./pages/Contacts/Contact";
+import Incidents from "./pages/Incidents/Incidents";
+import Logs from "./pages/Logs/Logs";
+import MapPage from "./pages/Map/Map";
+import PTT from "./pages/PTT/PTT";
 
 setupIonicReact();
 
 const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
-      <IonRouterOutlet>
-        <Route exact path="/home">
-          <Home />
-        </Route>
-        <Route exact path="/">
-          <Redirect to="/home" />
-        </Route>
-      </IonRouterOutlet>
+      <IonTabs>
+        <IonRouterOutlet>
+          {/* Default redirect must be inside IonRouterOutlet */}
+          <Route path="/" exact>
+            <Redirect to="/ptt" />
+          </Route>
+
+          <Route exact path="/contact" component={Contact} />
+          <Route exact path="/incident" component={Incidents} />
+          <Route exact path="/logs" component={Logs} />
+          <Route exact path="/map" component={MapPage} />
+          <Route exact path="/ptt" component={PTT} />
+        </IonRouterOutlet>
+
+        <BottomTabBar />
+      </IonTabs>
     </IonReactRouter>
   </IonApp>
 );

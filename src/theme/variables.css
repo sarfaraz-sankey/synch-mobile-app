@@ -1,3 +1,13 @@
 /* For information on how to create your own theme, please refer to:
 http://ionicframework.com/docs/theming/ */
 @import "tailwindcss";
+
+.custom-tab-bar {
+  --background: #3a3a3a;
+  --color: #ffffff;
+  --color-selected: #ff9f2f;
+}
+
+.custom-tab-bar .tab-selected {
+  border-bottom: 3px solid #ff9f2f;
+}

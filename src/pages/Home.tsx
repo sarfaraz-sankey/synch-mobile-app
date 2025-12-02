@@ -1,18 +1,35 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from "@ionic/react";
-import "./Home.css";
+import { IonApp, IonRouterOutlet, IonTabs } from "@ionic/react";
+import { IonReactRouter } from "@ionic/react-router";
+import { Redirect, Route } from "react-router";
+import BottomTabBar from "../navigations/BottomTabBar";
+import Contact from "./Contacts/Contact";
+import Incidents from "./Incidents/Incidents";
+import Logs from "./Logs/Logs";
+import MapPage from "./Map/Map";
+import PTT from "./PTT/PTT";
 
 const Home: React.FC = () => {
   return (
-    <IonPage className="flex-1">
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle>Blank</IonTitle>
-        </IonToolbar>
-      </IonHeader>
-      <IonContent fullscreen>
-        <IonTitle size="large" className="bg-red-300 text-white">Started App</IonTitle>
-      </IonContent>
-    </IonPage>
+    <IonApp>
+      <IonReactRouter>
+        <IonTabs>
+          <IonRouterOutlet>
+            {/* Default redirect must be inside IonRouterOutlet */}
+            <Route path="/" exact>
+              <Redirect to="/ptt" />
+            </Route>
+
+            <Route exact path="/contact" component={Contact} />
+            <Route exact path="/incident" component={Incidents} />
+            <Route exact path="/logs" component={Logs} />
+            <Route exact path="/map" component={MapPage} />
+            <Route exact path="/ptt" component={PTT} />
+          </IonRouterOutlet>
+
+          <BottomTabBar />
+        </IonTabs>
+      </IonReactRouter>
+    </IonApp>
   );
 };
 
